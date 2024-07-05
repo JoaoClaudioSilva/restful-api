@@ -1,0 +1,254 @@
+{
+    "Produtos": [
+      {
+        "id": 1234567890120,
+        "dsc_produto": "Saia midi floral",
+        "mrc_produto": "Infinity"
+      },
+      {
+        "id": 1234567890123,
+        "dsc_produto": "Camisa social listrada",
+        "mrc_produto": "Stellar"
+      },
+      {
+        "id": 1357924680246,
+        "dsc_produto": "Casaco acolchoado bege",
+        "mrc_produto": "Supernova"
+      },
+      {
+        "id": 2109876543210,
+        "dsc_produto": "Macacão jeans",
+        "mrc_produto": "Astral"
+      },
+      {
+        "id": 2345678901234,
+        "dsc_produto": "Sapato mocassim marrom",
+        "mrc_produto": "Eclipse"
+      },
+      {
+        "id": 3210987654321,
+        "dsc_produto": "Calça social azul marinho",
+        "mrc_produto": "Lunar"
+      },
+      {
+        "id": 3456789012345,
+        "dsc_produto": "Vestido preto básico",
+        "mrc_produto": "Aurora"
+      },
+      {
+        "id": 4321098765432,
+        "dsc_produto": "Camiseta polo azul claro",
+        "mrc_produto": "Celestial"
+      },
+      {
+        "id": 4567890123456,
+        "dsc_produto": "Camiseta básica branca",
+        "mrc_produto": "Nebula"
+      },
+      {
+        "id": 5432109876543,
+        "dsc_produto": "Sobretudo preto",
+        "mrc_produto": "Orbit"
+      },
+      {
+        "id": 5678901234567,
+        "dsc_produto": "Tênis branco esportivo",
+        "mrc_produto": "Solaris"
+      },
+      {
+        "id": 5890123456789,
+        "dsc_produto": "Regata básica cinza",
+        "mrc_produto": "Zenith"
+      },
+      {
+        "id": 6789012345678,
+        "dsc_produto": "Sapato social preto",
+        "mrc_produto": "Pulse"
+      },
+      {
+        "id": 7654321098765,
+        "dsc_produto": "Camisa xadrez masculina",
+        "mrc_produto": "Galactic"
+      },
+      {
+        "id": 7841234567890,
+        "dsc_produto": "Blusa de seda estampada",
+        "mrc_produto": "Aurora"
+      },
+      {
+        "id": 7890123456789,
+        "dsc_produto": "Blazer azul marinho",
+        "mrc_produto": "Zephyr"
+      },
+      {
+        "id": 8765432109876,
+        "dsc_produto": "Calça jeans masculina",
+        "mrc_produto": "Nova"
+      },
+      {
+        "id": 8901234567890,
+        "dsc_produto": "Jaqueta de couro marrom",
+        "mrc_produto": "Polaris"
+      },
+      {
+        "id": 9012345678901,
+        "dsc_produto": "Calça de linho bege",
+        "mrc_produto": "Orion"
+      },
+      {
+        "id": 9780201379623,
+        "dsc_produto": "Shorts jeans desfiado",
+        "mrc_produto": "Equinox"
+      }
+    ],
+    "Lojas": [
+      {
+        "id": 12345678000190,
+        "nme_loja": "Loja Exemplar",
+        "end_loja": "Rua das Acácias, 123"
+      },
+      {
+        "id": 23456789000101,
+        "nme_loja": "Moda Expressiva",
+        "end_loja": "Avenida do Sol Nascente, 1000"
+      },
+      {
+        "id": 34567890000112,
+        "nme_loja": "Elegância Atual",
+        "end_loja": "Beco das Marés, 50"
+      },
+      {
+        "id": 45678901000123,
+        "nme_loja": "Estilo Urbano",
+        "end_loja": "Estrada do Horizonte, 456"
+      },
+      {
+        "id": 56789012000134,
+        "nme_loja": "Vestuário Clássico",
+        "end_loja": "Viela das Colinas, 1500"
+      }
+    ],
+    "Estoques": [
+      {
+        "fk_produto": 1234567890120,
+        "fk_loja": 12345678000190,
+        "qnt_estoque": 50,
+        "prc_estoque": 89.99
+      },
+      {
+        "fk_produto": 1234567890123,
+        "fk_loja": 23456789000101,
+        "qnt_estoque": 30,
+        "prc_estoque": 59.99
+      },
+      {
+        "fk_produto": 1357924680246,
+        "fk_loja": 34567890000112,
+        "qnt_estoque": 20,
+        "prc_estoque": 129.99
+      },
+      {
+        "fk_produto": 2109876543210,
+        "fk_loja": 45678901000123,
+        "qnt_estoque": 15,
+        "prc_estoque": 149.99
+      },
+      {
+        "fk_produto": 2345678901234,
+        "fk_loja": 56789012000134,
+        "qnt_estoque": 25,
+        "prc_estoque": 99.99
+      },
+      {
+        "fk_produto": 3210987654321,
+        "fk_loja": 12345678000190,
+        "qnt_estoque": 40,
+        "prc_estoque": 79.99
+      },
+      {
+        "fk_produto": 3456789012345,
+        "fk_loja": 23456789000101,
+        "qnt_estoque": 35,
+        "prc_estoque": 119.99
+      },
+      {
+        "fk_produto": 4321098765432,
+        "fk_loja": 34567890000112,
+        "qnt_estoque": 50,
+        "prc_estoque": 69.99
+      },
+      {
+        "fk_produto": 4567890123456,
+        "fk_loja": 45678901000123,
+        "qnt_estoque": 60,
+        "prc_estoque": 39.99
+      },
+      {
+        "fk_produto": 5432109876543,
+        "fk_loja": 56789012000134,
+        "qnt_estoque": 10,
+        "prc_estoque": 199.99
+      },
+      {
+        "fk_produto": 5678901234567,
+        "fk_loja": 12345678000190,
+        "qnt_estoque": 30,
+        "prc_estoque": 129.99
+      },
+      {
+        "fk_produto": 5890123456789,
+        "fk_loja": 23456789000101,
+        "qnt_estoque": 55,
+        "prc_estoque": 49.99
+      },
+      {
+        "fk_produto": 6789012345678,
+        "fk_loja": 34567890000112,
+        "qnt_estoque": 18,
+        "prc_estoque": 179.99
+      },
+      {
+        "fk_produto": 7654321098765,
+        "fk_loja": 45678901000123,
+        "qnt_estoque": 25,
+        "prc_estoque": 89.99
+      },
+      {
+        "fk_produto": 7841234567890,
+        "fk_loja": 56789012000134,
+        "qnt_estoque": 12,
+        "prc_estoque": 149.99
+      },
+      {
+        "fk_produto": 7890123456789,
+        "fk_loja": 12345678000190,
+        "qnt_estoque": 8,
+        "prc_estoque": 199.99
+      },
+      {
+        "fk_produto": 8765432109876,
+        "fk_loja": 23456789000101,
+        "qnt_estoque": 22,
+        "prc_estoque": 129.99
+      },
+      {
+        "fk_produto": 8901234567890,
+        "fk_loja": 34567890000112,
+        "qnt_estoque": 5,
+        "prc_estoque": 299.99
+      },
+      {
+        "fk_produto": 9012345678901,
+        "fk_loja": 45678901000123,
+        "qnt_estoque": 30,
+        "prc_estoque": 109.99
+      },
+      {
+        "fk_produto": 9780201379623,
+        "fk_loja": 56789012000134,
+        "qnt_estoque": 40,
+        "prc_estoque": 69.99
+      }
+    ]
+}
+  

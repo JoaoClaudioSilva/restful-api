@@ -1,0 +1,601 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": ""
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "tags": [
+    {
+      "name": "usuário",
+      "description": "Rotas acessíveis por usuários"
+    },
+    {
+      "name": "admin",
+      "description": "Rotas acessíveis apenas por admins"
+    },
+    {
+      "name": "data",
+      "description": "Rotas relacionadas ao acesso ao banco de dados"
+    }
+  ],
+
+  "paths": {
+    "/users/register": {
+      "post": {
+        "summary": "Registra um novo usuário",
+        "tags": ["usuário"],
+        "description": "Este endpoint realiza um registro de um usuário no banco de dados. Os parâmetros {nome} e {senha} devem ser fornecidos no corpo da requisição.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "Objeto com nome e senha de um usuário a ser registrado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "usuario-teste"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "usuario-teste"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "summary": "Loga um usuário",
+        "tags": ["usuário"],
+        "description": "Este endpoint realiza o login de um usuário no sistema. Os parâmetros {nome} e {senha} devem ser fornecidos no corpo da requisição.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "Objeto com nome e senha de um usuário a ser criado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "usuario-teste"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "usuario-teste"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users/": {
+      "put": {
+        "summary": "Atualiza dados pessoais de um usuário",
+        "tags": ["usuário"],
+        "description": "Este endpoint realiza uma atualização nos dados pessoais do próprio usuário no banco de dados. O parâmetro {authorization} deve ser fornecido no cabeçalho da requisição.",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "description": "Bearer token que comprove o login do usuário",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Novos dados pessoais do usuário",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "usuario-teste"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "usuario-teste"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": "Conflict"
+          }
+        }
+      }
+    },
+    "/admins/create/{nome}": {
+      "put": {
+        "summary": "Confere diretos de administrador a um usuário",
+        "tags": ["admin"],
+        "description": "Este endpoint concede permissões de administrador a um usuário. O parâmetro {nome} deve ser fornecido na URL, o {authorization} deve ser fornecido no cabeçalho.",
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "path",
+            "required": true,
+            "description": "Nome do usuário a se tornar administrador",
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "description": "Bearer token que comprove o login de administrador",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/admins/update/{nome}": {
+      "put": {
+        "summary": "Atualiza dados pessoais de um usuário",
+        "tags": ["admin"],
+        "description": "Este endpoint altera os dados pessoais de um usuário no banco de dados. O parâmetro {nome} deve ser fornecido na URL, o {authorization} deve ser fornecido no cabeçalho e os novos dados devem ser fornecidos no corpo da requisição.",
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "path",
+            "description": "Nome do usuário a ser editado",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "Bearer token que comprove o login de administrador",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Novos dados pessoais do usuário",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "usuario-teste"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "usuario-teste"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/admins/{nome}": {
+      "delete": {
+        "summary": "Exclui um usuário",
+        "tags": ["admin"],
+        "description": "Este endpoint exclui um usuário do banco de dados. O parâmetro {nome} deve ser fornecido na URL e o {authorization} deve ser fornecido no cabeçalho da requisição.",
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "path",
+            "description": "Nome do usuário a ser excluído",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "description": "Bearer token que comprove o login de administrador",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/install": {
+      "get": {
+        "summary": "Instala uma versão padrão do banco de dados",
+        "tags": ["data"],
+        "description": "Este endpoint realiza a instalação de uma versão padrão do banco de dados.",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/data/{modelo}": {
+      "post": {
+        "summary": "Insere uma tupla",
+        "tags": ["data"],
+        "description": "Este endpoint cria uma tupla na tabela especificada no banco de dados. O parâmetro {modelo} deve ser fornecido na URL, o {authorization} deve ser fornecido no cabeçalho e os dados da nova tupla devem ser fornecidos no corpo da requisição.",
+        "parameters": [
+          {
+            "name": "modelo",
+            "in": "path",
+            "description": "Nome da tabela que se deseja adicionar os dados",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "produto"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "description": "Bearer token que comprove o login do usuário",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "Dados da nova tupla",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": "123"
+                },
+                "dsc_produto": {
+                  "type": "string",
+                  "example": "descricao-teste"
+                },
+                "mrc_produto": {
+                  "type": "string",
+                  "example": "marca-teste"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": "Conflict"
+          }
+        }
+      },
+      "get": {
+        "summary": "Busca uma tabela",
+        "tags": ["data"],
+        "description": "Este endpoint realiza uma busca pela tabela especificada no banco de dados. O parâmetro {modelo} deve ser fornecido na URL.",
+        "parameters": [
+          {
+            "name": "modelo",
+            "in": "path",
+            "description": "Nome da tabela que se deseja buscar.",
+            "required": true,
+            "type": "string", 
+            "enum": ["loja", "produto", "estoque"]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }      
+    },
+    "/data/{modelo}/search": {
+      "get": {
+        "summary": "Busca uma tupla com filtro e ordenação",
+        "tags": ["data"],
+        "description": "Este endpoint realiza uma busca pela tupla especificada na tabela no banco de dados. O parâmetro {modelo} deve ser fornecido na URL, e os parâmetros {q}, {ordem}, {limite} e {pagina} no query da URL.",
+        "parameters": [
+          {
+            "name": "modelo",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Nome da tabela que se deseja buscar.",
+            "enum": ["loja", "produto", "estoque"]
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Parâmetro para filtrar os resultados",
+            "schema": {
+              "type": "string",
+              "example": "nme_loja=Loja Exemplar"
+            }
+          },
+          {
+            "name": "ordem",
+            "in": "query",
+            "description": "Parâmetro para especificar a ordenação dos resultados (separados por vírgula).",
+            "schema": {
+              "type": "string",
+              "example": "id,ASC"
+            }
+          },
+          {
+            "name": "limite",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "description": "Parâmetro para especificar o limite de resultados.",
+            "enum": [5, 10, 30]
+          },
+          {
+            "name": "pagina",
+            "in": "query",
+            "required": true,
+            "description": "Parâmetro para especificar a paginação de resultados",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/data/{modelo}/{id}": {
+      "get": {
+        "summary": "Busca uma tupla",
+        "tags": ["data"],
+        "description": "Este endpoint realiza uma busca pela tupla com o id especificado no banco de dados. Os parâmetros {modelo} e {id} devem ser fornecidos na URL.",
+        "parameters": [
+          {
+            "name": "modelo",
+            "in": "path",
+            "description": "Nome da tabela que se deseja buscar.",
+            "required": true,
+            "type": "string",
+            "enum": ["loja", "produto", "estoque"]
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Chave primária da tupla que se deseja encontrar",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "example": 12345678000190
+            }
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualiza os dados de uma tupla",
+        "tags": ["data"],
+        "description": "Este endpoint altera os dados de uma tupla no banco de dados. Os parâmetros {modelo} e {id} devem ser fornecidos na URL, o {authorization} deve ser fornecido no cabeçalho e os novos dados devem ser fornecidos no corpo da requisição.",
+        "parameters": [
+          {
+            "name": "modelo",
+            "in": "path",
+            "description": "Nome da tabela que se deseja alterar os dados",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "produto"
+            }
+
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Chave primária da tupla a ser alterada",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": "123"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "description": "Bearer token que comprove o login de administrador",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Objeto com os campos a serem alterados",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mrc_produto": {
+                  "type": "string",
+                  "example": "marca-teste"
+                },
+                "dsc_produto": {
+                  "type": "string",
+                  "example": "descricao-teste"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": "Conflict"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Exclui uma tupla",
+        "tags": ["data"],
+        "description": "Este endpoint exclui uma tupla do banco de dados. Os parâmetros {modelo} e {id} devem ser fornecidos na URL, e o {authorization} deve ser fornecido no cabeçalho da requisição.",
+        "parameters": [
+          {
+            "name": "modelo",
+            "in": "path",
+            "description": "Nome da tabela que se deseja excluir dados",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Chave primária da tupla a ser excluída",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "description": "Bearer token que comprove o login de administrador",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  }
+}

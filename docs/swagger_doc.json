@@ -8,7 +8,7 @@
   "host": "restful-api-topaz.vercel.app",
   "basePath": "/",
   "schemes": [
-    "http"
+    "http", "https"
   ],
   "tags": [
     {

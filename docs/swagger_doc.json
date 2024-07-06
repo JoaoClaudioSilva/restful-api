@@ -5,7 +5,7 @@
     "title": "REST API",
     "description": ""
   },
-  "host": "restful-api-topaz.vercel.app",
+  "host": "joaoc-restful-api.vercel.app",
   "basePath": "/",
   "schemes": [
     "https"

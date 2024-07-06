@@ -118,7 +118,7 @@ const estoque = sequelize.define(
       },
     },
     prc_estoque: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.FLOAT,
       allowNull: false,
       validate: {
         notEmpty: true,

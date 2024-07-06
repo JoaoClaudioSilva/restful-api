@@ -9,6 +9,10 @@ dotenv.config()
 app.use(express.json())
 app.use(express.static(path.join(__dirname, "public")))
 
+app.get('/', (req, res) => {
+  res.redirect("/docs")
+})
+
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(require("./docs/swagger_doc.json")))
 
 app.use("/users", require("./routes/route_usuario"))

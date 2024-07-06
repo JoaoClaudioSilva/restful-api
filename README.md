@@ -23,7 +23,7 @@ Este projeto é uma API RESTful que permite o gerenciamento de uma rede de lojas
 
 - Linguagem: Javascript
 - Framework: Express
-- Banco de dados: SQLite
+- Banco de dados: PostgreSQL 
 
 
 ## Instalação

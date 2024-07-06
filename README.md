@@ -23,37 +23,12 @@ Este projeto é uma API RESTful que permite o gerenciamento de uma rede de lojas
 
 - Linguagem: Javascript
 - Framework: Express
-- Banco de dados: PostgreSQL 
+- Banco de dados: PostgreSQL
+- Hosting: Vercel
 
+## Acesso
 
-## Instalação
-
-
-### Pré-requisitos
-
-- [Git](https://git-scm.com/downloads) - v2.44
-- [Node.js](https://nodejs.org/en/download/package-manager) - v20.11
-> Siga os passos de instalação fornecidos pelos sites de download
-
-### Passos para a instalação
-
-1.  Clone o repositório
-``` bash
-git clone https://github.com/JoaoClaudioSilva/restful-api.git
-cd restful-api
-```
-> Altere os valores das variáveis do arquivo .env, caso deseje
-
-2.  Instale as dependências
-``` bash
-npm install
-```
-
-3. Inicie a aplicação
-``` bash
-npm start
-```
-
+Este branch do projeto está hospedado. Acesse pelo link: https://restful-api-topaz.vercel.app/
 
 ## Endpoints
 > Este é apenas um sumário dos caminhos disponíveis. A documentação completa dos recursos pode ser acessada no endpoint /docs  

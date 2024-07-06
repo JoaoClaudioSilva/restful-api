@@ -1,17 +1,14 @@
 const { Sequelize, DataTypes } = require("sequelize")
 const { errorHandler } = require("../helpers/helper_erro")
 
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: "./databases/data.sqlite",
-  logging: false,
-  dialectOptions: {
-    multipleStatements: true
-  }
-})
+
+const sequelize = new Sequelize("postgres://" +
+  "default:" +
+  process.env.SECRET_PGS +
+  "@ep-wispy-boat-a4em6u28.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require", {dialectModule: require("pg")});
 
 
-/**
+  /**
  * Instala o banco de dados padrão
  * @param {Express.Response} res Objeto de resposta
  * 
@@ -48,7 +45,7 @@ const loja = sequelize.define(
   "Loja",
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
       primaryKey: true,
       allowNull: false,
       validate: {
@@ -75,7 +72,7 @@ const produto = sequelize.define(
   "Produto", 
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
       primaryKey: true,
       allowNull: false,
       validate: {
@@ -99,7 +96,7 @@ const estoque = sequelize.define(
   "Estoque",
   {
     fk_produto: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
       primaryKey: true,
       allowNull: false,
       validate: {
@@ -107,7 +104,7 @@ const estoque = sequelize.define(
       },
     },
     fk_loja: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
       allowNull: false,
       validate: {
         min: 0,

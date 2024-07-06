@@ -13,12 +13,7 @@ app.get('/', (req, res) => {
   res.redirect("/docs")
 })
 
-app.use("/docs",
-  swaggerUi.serve,
-  swaggerUi.setup(require("./docs/swagger_doc.json"),
-  { 
-    customCssUrl: "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css"
-  }))
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(require("./docs/swagger_doc.json")))
 
 app.use("/users", require("./routes/route_usuario"))
 app.use("/admins", require("./routes/route_admin"))

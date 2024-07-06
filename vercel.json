@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/docs/(.+css)",
+      "destination": "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.0.0/swagger-ui.min.css"
+    },
+    {
       "source": "/(.*)",
       "destination": "/api"
     }

@@ -18,22 +18,14 @@ const sequelize = new Sequelize({
  * @returns {Express.Response} Objeto de resposta
  */
 const install = async (res) => {
-  const data = require("./install_data.json");
+  const data = require("./install_data.json")
 
   try {
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: true })
 
-    for(const Loja of data.Lojas) {
-      await loja.create(Loja);
-    }
-
-    for(const Produto of data.Produtos) {
-      await produto.create(Produto);
-    }
-
-    for(const Estoque of data.Estoques) {
-      await estoque.create(Estoque);
-    }
+    await loja.bulkCreate(data.Lojas)
+    await produto.bulkCreate(data.Produtos)
+    await estoque.bulkCreate(data.Estoques)
 
     return res.status(201).send("Banco de dados instalado com sucesso")
   }
@@ -100,10 +92,13 @@ const estoque = sequelize.define(
   {
     fk_produto: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
       allowNull: false,
       validate: {
         min: 0,
+      },
+      references: {
+        model: "Produtos",
+        key: "id",
       },
     },
     fk_loja: {
@@ -111,7 +106,11 @@ const estoque = sequelize.define(
       allowNull: false,
       validate: {
         min: 0,
-      }
+      },
+      references: {
+        model: "Lojas",
+        key: "id",
+      },
     },
     qnt_estoque: {
       type: DataTypes.INTEGER,
@@ -127,7 +126,7 @@ const estoque = sequelize.define(
         notEmpty: true,
       },
     },
-  }
+  },  
 )
 
 
@@ -145,5 +144,6 @@ produto.belongsToMany(loja, {
   foreignKey: "fk_produto",
   otherKey: "fk_loja",
 })
+
 
 module.exports = { loja, produto, estoque, install }

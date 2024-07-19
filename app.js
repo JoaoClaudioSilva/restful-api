@@ -18,7 +18,7 @@ app.use("/data", require("./routes/route_data"))
 app.get("/install", (req, res) => require("./models/model_database").install(res))
 
 app.listen(process.env.PORT, () => {
-  console.log(`Rodando na porta: ${process.env.PORT}`);
-});
+  console.log(`Rodando na porta: ${process.env.PORT}`)
+})
 
 module.exports = app

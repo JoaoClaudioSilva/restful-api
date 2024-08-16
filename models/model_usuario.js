@@ -45,6 +45,13 @@ const Usuario = sequelize.define(
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
+    },
+    /*
+     * Adição do contador de logins de usuários
+     */
+    counter: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
     }
   },
 )

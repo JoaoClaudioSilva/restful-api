@@ -35,7 +35,14 @@ module.exports = {
   logaUsuario: async (nome, senha) => {
     if(!nome || !senha) throw new QueryError("Campos 'nome' e 'senha' são obrigatórios")
 
-    return await Usuario.findOne({ where: { nome: nome, senha: senha }})
+    /* return await Usuario.findOne({ where: { nome: nome, senha: senha }})
+     *
+     * Alteração para contador de usuários:
+     */
+    let user = await Usuario.findOne({ where: { nome: nome, senha: senha }})
+    user.increment('counter')
+
+    return user
   },
 
   /**

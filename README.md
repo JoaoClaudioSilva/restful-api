@@ -28,7 +28,7 @@ Este projeto é uma API RESTful que permite o gerenciamento de uma rede de lojas
 
 ## Acesso
 
-Este branch do projeto está hospedado. Acesse pelo link: https://restful-api-topaz.vercel.app/
+Este branch do projeto está hospedado. Acesse pelo link: https://joaoc-restful-api.vercel.app/docs/
 
 ## Endpoints
 > Este é apenas um sumário dos caminhos disponíveis. A documentação completa dos recursos pode ser acessada no endpoint /docs  

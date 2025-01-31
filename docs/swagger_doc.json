@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0.0",
+    "version": "2.0.0",
     "title": "REST API",
-    "description": ""
+    "description": "Desenvolvido por João Claudio de Oliveira Silva"
   },
   "host": "joaoc-restful-api.vercel.app",
   "basePath": "/",
@@ -24,12 +24,13 @@
       "description": "Rotas relacionadas ao acesso ao banco de dados"
     }
   ],
-
   "paths": {
     "/users/register": {
       "post": {
         "summary": "Registra um novo usuário",
-        "tags": ["usuário"],
+        "tags": [
+          "usuário"
+        ],
         "description": "Este endpoint realiza um registro de um usuário no banco de dados. Os parâmetros {nome} e {senha} devem ser fornecidos no corpo da requisição.",
         "parameters": [
           {
@@ -71,7 +72,9 @@
     "/users/login": {
       "post": {
         "summary": "Loga um usuário",
-        "tags": ["usuário"],
+        "tags": [
+          "usuário"
+        ],
         "description": "Este endpoint realiza o login de um usuário no sistema. Os parâmetros {nome} e {senha} devem ser fornecidos no corpo da requisição.",
         "parameters": [
           {
@@ -113,7 +116,9 @@
     "/users/": {
       "put": {
         "summary": "Atualiza dados pessoais de um usuário",
-        "tags": ["usuário"],
+        "tags": [
+          "usuário"
+        ],
         "description": "Este endpoint realiza uma atualização nos dados pessoais do próprio usuário no banco de dados. O parâmetro {authorization} deve ser fornecido no cabeçalho da requisição.",
         "parameters": [
           {
@@ -161,7 +166,9 @@
     "/admins/create/{nome}": {
       "put": {
         "summary": "Confere diretos de administrador a um usuário",
-        "tags": ["admin"],
+        "tags": [
+          "admin"
+        ],
         "description": "Este endpoint concede permissões de administrador a um usuário. O parâmetro {nome} deve ser fornecido na URL, o {authorization} deve ser fornecido no cabeçalho.",
         "parameters": [
           {
@@ -195,7 +202,9 @@
     "/admins/update/{nome}": {
       "put": {
         "summary": "Atualiza dados pessoais de um usuário",
-        "tags": ["admin"],
+        "tags": [
+          "admin"
+        ],
         "description": "Este endpoint altera os dados pessoais de um usuário no banco de dados. O parâmetro {nome} deve ser fornecido na URL, o {authorization} deve ser fornecido no cabeçalho e os novos dados devem ser fornecidos no corpo da requisição.",
         "parameters": [
           {
@@ -250,7 +259,9 @@
     "/admins/{nome}": {
       "delete": {
         "summary": "Exclui um usuário",
-        "tags": ["admin"],
+        "tags": [
+          "admin"
+        ],
         "description": "Este endpoint exclui um usuário do banco de dados. O parâmetro {nome} deve ser fornecido na URL e o {authorization} deve ser fornecido no cabeçalho da requisição.",
         "parameters": [
           {
@@ -287,7 +298,9 @@
     "/install": {
       "get": {
         "summary": "Instala uma versão padrão do banco de dados",
-        "tags": ["data"],
+        "tags": [
+          "data"
+        ],
         "description": "Este endpoint realiza a instalação de uma versão padrão do banco de dados.",
         "responses": {
           "201": {
@@ -299,10 +312,29 @@
         }
       }
     },
+    "/data": {
+      "get": {
+        "summary": "Busca todas as tabelas",
+        "tags": [
+          "data"
+        ],
+        "description": "Este endpoint realiza uma busca por todas as tabelas no banco de dados.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
     "/data/{modelo}": {
       "post": {
         "summary": "Insere uma tupla",
-        "tags": ["data"],
+        "tags": [
+          "data"
+        ],
         "description": "Este endpoint cria uma tupla na tabela especificada no banco de dados. O parâmetro {modelo} deve ser fornecido na URL, o {authorization} deve ser fornecido no cabeçalho e os dados da nova tupla devem ser fornecidos no corpo da requisição.",
         "parameters": [
           {
@@ -366,7 +398,9 @@
       },
       "get": {
         "summary": "Busca uma tabela",
-        "tags": ["data"],
+        "tags": [
+          "data"
+        ],
         "description": "Este endpoint realiza uma busca pela tabela especificada no banco de dados. O parâmetro {modelo} deve ser fornecido na URL.",
         "parameters": [
           {
@@ -374,8 +408,12 @@
             "in": "path",
             "description": "Nome da tabela que se deseja buscar.",
             "required": true,
-            "type": "string", 
-            "enum": ["loja", "produto", "estoque"]
+            "type": "string",
+            "enum": [
+              "loja",
+              "produto",
+              "estoque"
+            ]
           }
         ],
         "responses": {
@@ -386,12 +424,14 @@
             "description": "Not Found"
           }
         }
-      }      
+      }
     },
     "/data/{modelo}/search": {
       "get": {
         "summary": "Busca uma tupla com filtro e ordenação",
-        "tags": ["data"],
+        "tags": [
+          "data"
+        ],
         "description": "Este endpoint realiza uma busca pela tupla especificada na tabela no banco de dados. O parâmetro {modelo} deve ser fornecido na URL, e os parâmetros {q}, {ordem}, {limite} e {pagina} no query da URL.",
         "parameters": [
           {
@@ -400,7 +440,11 @@
             "required": true,
             "type": "string",
             "description": "Nome da tabela que se deseja buscar.",
-            "enum": ["loja", "produto", "estoque"]
+            "enum": [
+              "loja",
+              "produto",
+              "estoque"
+            ]
           },
           {
             "name": "q",
@@ -426,7 +470,11 @@
             "required": true,
             "type": "integer",
             "description": "Parâmetro para especificar o limite de resultados.",
-            "enum": [5, 10, 30]
+            "enum": [
+              5,
+              10,
+              30
+            ]
           },
           {
             "name": "pagina",
@@ -452,7 +500,9 @@
     "/data/{modelo}/{id}": {
       "get": {
         "summary": "Busca uma tupla",
-        "tags": ["data"],
+        "tags": [
+          "data"
+        ],
         "description": "Este endpoint realiza uma busca pela tupla com o id especificado no banco de dados. Os parâmetros {modelo} e {id} devem ser fornecidos na URL.",
         "parameters": [
           {
@@ -461,7 +511,11 @@
             "description": "Nome da tabela que se deseja buscar.",
             "required": true,
             "type": "string",
-            "enum": ["loja", "produto", "estoque"]
+            "enum": [
+              "loja",
+              "produto",
+              "estoque"
+            ]
           },
           {
             "name": "id",
@@ -472,7 +526,6 @@
               "type": "number",
               "example": 12345678000190
             }
-
           }
         ],
         "responses": {
@@ -486,7 +539,9 @@
       },
       "put": {
         "summary": "Atualiza os dados de uma tupla",
-        "tags": ["data"],
+        "tags": [
+          "data"
+        ],
         "description": "Este endpoint altera os dados de uma tupla no banco de dados. Os parâmetros {modelo} e {id} devem ser fornecidos na URL, o {authorization} deve ser fornecido no cabeçalho e os novos dados devem ser fornecidos no corpo da requisição.",
         "parameters": [
           {
@@ -498,7 +553,6 @@
               "type": "string",
               "example": "produto"
             }
-
           },
           {
             "name": "id",
@@ -556,7 +610,9 @@
       },
       "delete": {
         "summary": "Exclui uma tupla",
-        "tags": ["data"],
+        "tags": [
+          "data"
+        ],
         "description": "Este endpoint exclui uma tupla do banco de dados. Os parâmetros {modelo} e {id} devem ser fornecidos na URL, e o {authorization} deve ser fornecido no cabeçalho da requisição.",
         "parameters": [
           {

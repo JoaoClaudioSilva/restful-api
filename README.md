@@ -1,9 +1,8 @@
-# PROJETO INDIVIDUAL - BACKEND
+# PROJETO INDIVIDUAL - BACKEND - v2
 
 ## Descrição
 
 Este projeto é uma API RESTful que permite o gerenciamento de uma rede de lojas. Ela oferece funcionalidades para gerenciar produtos, lojas e estoques, fornecendo operações CRUD para cada um desses recursos.
-
 
 ## Funcionalidades
 
@@ -31,29 +30,31 @@ Este projeto é uma API RESTful que permite o gerenciamento de uma rede de lojas
 Este branch do projeto está hospedado. Acesse pelo link: https://joaoc-restful-api.vercel.app/docs/
 
 ## Endpoints
-> Este é apenas um sumário dos caminhos disponíveis. A documentação completa dos recursos pode ser acessada no endpoint /docs  
+
+> Este é apenas um sumário dos caminhos disponíveis. A documentação completa dos recursos pode ser acessada no endpoint /docs
+
 ### Recursos de gerenciamento de usuários
 
 - Acessíveis por usuários
-  
-| Método | Endpoint              | Descrição                         |
-|--------|-----------------------|-----------------------------------|
-| POST   | /users/register       | Cria um usuário                   |
-| POST   | /uses/login           | Gera um token JWT para login      |
-| PUT    | /users                | Atualiza dados pessoais           |
+
+| Método | Endpoint        | Descrição                    |
+| ------ | --------------- | ---------------------------- |
+| POST   | /users/register | Cria um usuário              |
+| POST   | /uses/login     | Gera um token JWT para login |
+| PUT    | /users          | Atualiza dados pessoais      |
 
 - Acessíveis por administradores
-  
+
 | Método | Endpoint              | Descrição                                       |
-|--------|-----------------------|-------------------------------------------------|
+| ------ | --------------------- | ----------------------------------------------- |
 | PUT    | /admins/create/{nome} | Concede privilégios de administrador ao usuário |
 | PUT    | /admins/update/{nome} | Altera as credenciais de um usuário             |
 | DELETE | /admins/{nome}        | Exclui um usuário                               |
 
-
 ### Recursos de acesso aos dados
+
 | Método | Endpoint              | Descrição                                                      |
-|--------|-----------------------|----------------------------------------------------------------|
+| ------ | --------------------- | -------------------------------------------------------------- |
 | GET    | /install              | Instala a configuração inicial do banco de dados               |
 | POST   | /data/{modelo}        | Cria uma nova tupla na tabela-modelo                           |
 | GET    | /data/{modelo}        | Retorna todos os dados da tabela-modelo                        |
@@ -62,6 +63,6 @@ Este branch do projeto está hospedado. Acesse pelo link: https://joaoc-restful-
 | PUT    | /data/{modelo}/{id}   | Altera os dados da tupla com o id selecionado da tabela-modelo |
 | DELETE | /data/{modelo}/{id}   | Exclui a tupla com o id selecionado da tabela-modelo           |
 
-
 ## Licença
+
 Este projeto está licenciado sob a licença MIT.

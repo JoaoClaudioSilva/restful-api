@@ -1,37 +1,46 @@
-const express = require("express")
-const app = express()
-const path = require("path")
-const dotenv = require("dotenv")
-const swaggerUi = require("swagger-ui-express")
+const express = require("express");
+const app = express();
+const path = require("path");
+const dotenv = require("dotenv");
+const swaggerUi = require("swagger-ui-express");
 
-dotenv.config()
+dotenv.config();
 
-app.use(express.json())
-app.use(express.static(path.join(__dirname, "public")))
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
 
-app.get('/', (req, res) => {
-  res.redirect("/docs")
-})
+app.get("/", (req, res) => {
+  res.redirect("/docs/v2");
+});
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", '*');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
 
-app.use("/docs", 
-  swaggerUi.serve, 
-  swaggerUi.setup(require("./docs/swagger_doc.json"),
-  { customCssUrl: '/custom.css' }))
+app.use(
+  "/docs/v2",
+  swaggerUi.serve,
+  swaggerUi.setup(require("./docs/swagger_doc.json"), {
+    customCssUrl: "/custom.css",
+    customSiteTitle: "REST API",
+  })
+);
 
-app.use("/users", require("./routes/route_usuario"))
-app.use("/admins", require("./routes/route_admin"))
-app.use("/data", require("./routes/route_data"))
+app.use("/users", require("./routes/route_usuario"));
+app.use("/admins", require("./routes/route_admin"));
+app.use("/data", require("./routes/route_data"));
 
-app.get("/install", (req, res) => require("./models/model_database").install(res))
+app.get("/install", (req, res) =>
+  require("./models/model_database").install(res)
+);
 
 app.listen(process.env.PORT, () => {
   console.log(`Rodando na porta: ${process.env.PORT}`);
 });
 
-module.exports = app
+module.exports = app;

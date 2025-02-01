@@ -33,11 +33,7 @@ module.exports = {
    * @returns {JSON}        JSONs das tuplas encontradas
    */
   leTupla: async (modelo, query, ordem, limite, pagina) => {
-    const atributos = Object.keys(modelos[modelo].rawAttributes).filter(
-      (attr) => !["id", "createdAt", "updatedAt"].includes(attr)
-    );
-
-    query ? query : "";
+    const atributos = Object.keys(modelos[modelo].rawAttributes);
 
     return await modelos[modelo].findAll({
       where: {

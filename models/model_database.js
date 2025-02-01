@@ -46,7 +46,7 @@ const allTables = async () => {
 // Modelo da tabela de lojas
 const loja = sequelize.define("Loja", {
   id: {
-    type: DataTypes.BIGINT,
+    type: DataTypes.TEXT,
     primaryKey: true,
     allowNull: false,
     validate: {
@@ -69,7 +69,7 @@ const loja = sequelize.define("Loja", {
 // Modelo da tabela de produtos
 const produto = sequelize.define("Produto", {
   id: {
-    type: DataTypes.BIGINT,
+    type: DataTypes.TEXT,
     primaryKey: true,
     allowNull: false,
     validate: {
@@ -89,7 +89,7 @@ const produto = sequelize.define("Produto", {
 // Modelo da tabela de estoques
 const estoque = sequelize.define("Estoque", {
   fk_produto: {
-    type: DataTypes.BIGINT,
+    type: DataTypes.TEXT,
     primaryKey: true,
     allowNull: false,
     validate: {
@@ -97,7 +97,7 @@ const estoque = sequelize.define("Estoque", {
     },
   },
   fk_loja: {
-    type: DataTypes.BIGINT,
+    type: DataTypes.TEXT,
     allowNull: false,
     validate: {
       min: 0,

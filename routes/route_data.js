@@ -10,6 +10,7 @@ const {
   excluiTupla,
   leTabela,
   leTodasTabelas,
+  buscaLike,
 } = require("../controllers/controller_database");
 const { QueryError } = require("sequelize");
 
@@ -48,20 +49,13 @@ router.get("/:modelo", async (req, res) => {
 
 router.get("/:modelo/search", async (req, res) => {
   const { modelo } = req.params;
-  let { ordem, limite, pagina, ...query } = req.query;
-
-  // Formata os parâmetros para busca, trocando - por um espaço
-  for (const key in query) {
-    query[key] = query[key].replace(/-/g, " ");
-  }
+  let { ordem, limite, pagina, q } = req.query;
 
   // Separa o nome da coluna da opção de ordenação
   ordem ? (ordem = [ordem.split(",")]) : (ordem = null);
 
   try {
-    if (!(limite || pagina))
-      throw new QueryError("Campos 'limite' e 'pagina' são obrigatórios");
-    const resposta = await leTupla(modelo, query, ordem, limite, pagina);
+    const resposta = await leTupla(modelo, q, ordem, limite, pagina);
     res.status(200).send(resposta);
   } catch (err) {
     return errorHandler(res, err);

@@ -428,7 +428,7 @@
     },
     "/data/{modelo}/search": {
       "get": {
-        "summary": "Busca uma tupla com filtro e ordenação",
+        "summary": "Busca uma tupla exata",
         "tags": [
           "data"
         ],
@@ -467,7 +467,6 @@
           {
             "name": "limite",
             "in": "query",
-            "required": true,
             "type": "integer",
             "description": "Parâmetro para especificar o limite de resultados.",
             "enum": [
@@ -479,7 +478,6 @@
           {
             "name": "pagina",
             "in": "query",
-            "required": true,
             "description": "Parâmetro para especificar a paginação de resultados",
             "schema": {
               "type": "integer",

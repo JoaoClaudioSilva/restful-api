@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes } = require("sequelize");
+const { Sequelize, DataTypes, Op } = require("sequelize");
 const { errorHandler } = require("../helpers/helper_erro");
 
 const sequelize = new Sequelize(
@@ -133,4 +133,4 @@ produto.belongsToMany(loja, {
   otherKey: "fk_loja",
 });
 
-module.exports = { loja, produto, estoque, install, allTables };
+module.exports = { loja, produto, estoque, install, allTables, Op };

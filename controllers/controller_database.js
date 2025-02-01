@@ -25,17 +25,26 @@ module.exports = {
   /**
    * Busca uma ou várias tuplas no banco de dados
    * @param {string} modelo               Nome do modelo da tabela
-   * @param {JSON} filter                 Objeto com as restrições de busca
+   * @param {JSON} query                 Objeto com as restrições de busca
    * @param {Array<string> | undefined} ordem     Opção de ordenação de uma coluna ascendente ou descendente, ordenação padrão se undefined
    * @param {number | null} limite               Quantidade de resultados retornados
    * @param {number | null} pagina               Paginação do resultado
    *
    * @returns {JSON}        JSONs das tuplas encontradas
    */
-  leTupla: async (modelo, filter, ordem, limite, pagina) => {
+  leTupla: async (modelo, query, ordem, limite, pagina) => {
+    const atributos = Object.keys(modelos[modelo].rawAttributes).filter(
+      (attr) => !["id", "createdAt", "updatedAt"].includes(attr)
+    );
+
+    query ? query : "";
+
     return await modelos[modelo].findAll({
-      where: filter,
-      rejectOnEmpty: true,
+      where: {
+        [modelos.Op.or]: atributos.map((campo) => ({
+          [campo]: { [modelos.Op.iLike]: `%${query ? query : ""}%` },
+        })),
+      },
       order: ordem,
       offset: pagina,
       limit: limite,

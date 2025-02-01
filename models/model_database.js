@@ -40,7 +40,9 @@ const install = async (res) => {
 };
 
 const allTables = async () => {
-  return await sequelize.getQueryInterface().showAllTables();
+  return (await sequelize.getQueryInterface().showAllTables()).filter(
+    (table) => table !== "Usuarios" && table !== "Estoques"
+  );
 };
 
 // Modelo da tabela de lojas

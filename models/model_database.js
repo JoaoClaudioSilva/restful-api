@@ -1,13 +1,9 @@
 const { Sequelize, DataTypes, Op } = require("sequelize");
 const { errorHandler } = require("../helpers/helper_erro");
 
-const sequelize = new Sequelize(
-  "postgres://" +
-    "default:" +
-    process.env.SECRET_PGS +
-    "@ep-wispy-boat-a4em6u28.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require",
-  { dialectModule: require("pg") }
-);
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialectModule: require("pg"),
+});
 
 /**
  * Instala o banco de dados padrão
